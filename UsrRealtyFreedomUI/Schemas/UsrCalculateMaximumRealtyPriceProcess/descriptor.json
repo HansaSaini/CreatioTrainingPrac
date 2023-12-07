@@ -1,0 +1,10 @@
+﻿{
+  "Descriptor": {
+    "UId": "4479c618-9769-48c7-8503-8478cc1814cc",
+    "Name": "UsrCalculateMaximumRealtyPriceProcess",
+    "ModifiedOnUtc": "\/Date(1701926373000)\/",
+    "ManagerName": "ProcessSchemaManager",
+    "Caption": "Calculate average realty price process",
+    "DependsOn": []
+  }
+}

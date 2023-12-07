@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Resources Culture="en-US">
+	<Group Type="String">
+		<Items>
+			<Item Name="AddonConfig.Rules.ea3c195a-b190-00b3-9156-0a74ef7fb4f5.Caption" Value="Make elements required: " />
+			<Item Name="Caption" Value="Realty(FreedomUI) form page (Business rules)" />
+		</Items>
+	</Group>
+</Resources>
