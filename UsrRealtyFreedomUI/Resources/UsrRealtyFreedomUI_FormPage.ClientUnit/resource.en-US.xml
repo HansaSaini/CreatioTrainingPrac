@@ -7,6 +7,8 @@
 			<Item Name="LocalizableStrings.addRecord_j2bhojq_caption.Value" Value="Add new" />
 			<Item Name="LocalizableStrings.addRecord_w8q17mh_caption.Value" Value="Add new" />
 			<Item Name="LocalizableStrings.Button_nla7q7j_caption.Value" Value="PUSH ME!" />
+			<Item Name="LocalizableStrings.Button_s79quci_caption.Value" Value="Button" />
+			<Item Name="LocalizableStrings.Button_wfn79yf_caption.Value" Value="Actions" />
 			<Item Name="LocalizableStrings.ExpansionPanel_s60pnke_title.Value" Value="Realty Visit (Freedom UI)" />
 			<Item Name="LocalizableStrings.GridDetailAddBtn_i7yx2m3_caption.Value" Value="New" />
 			<Item Name="LocalizableStrings.GridDetailExportDataBtn_oxcizda_caption.Value" Value="Export to Excel" />
@@ -14,6 +16,12 @@
 			<Item Name="LocalizableStrings.GridDetailRefreshBtn_dj3267r_caption.Value" Value="Refresh" />
 			<Item Name="LocalizableStrings.GridDetailSearchFilter_ceuhx8d_placeholder.Value" Value="Search" />
 			<Item Name="LocalizableStrings.GridDetailSettingsBtn_ueyurhm_caption.Value" Value="Actions" />
+			<Item Name="LocalizableStrings.MenuItem_23hk7i7_caption.Value" Value="Menu item" />
+			<Item Name="LocalizableStrings.MenuItem_34tnldv_caption.Value" Value="Calc average price" />
+			<Item Name="LocalizableStrings.MenuItem_dbbl2wx_caption.Value" Value="Menu item" />
+			<Item Name="LocalizableStrings.MenuItem_hkxqxl0_caption.Value" Value="Run Web Service" />
+			<Item Name="LocalizableStrings.MenuItem_nshvja2_caption.Value" Value="Menu item" />
+			<Item Name="LocalizableStrings.MenuItem_RunWebService_caption.Value" Value="Run Web Service" />
 			<Item Name="LocalizableStrings.NumberInput_j48xima_label.Value" Value="Number" />
 		</Items>
 	</Group>

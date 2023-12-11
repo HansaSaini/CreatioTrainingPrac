@@ -1,4 +1,5 @@
-define("UsrRealtyFreedomUI_FormPage", /**SCHEMA_DEPS*/[]/**SCHEMA_DEPS*/, function/**SCHEMA_ARGS*/()/**SCHEMA_ARGS*/ {
+/*jshint esversion : 11*/
+define("UsrRealtyFreedomUI_FormPage", /**SCHEMA_DEPS*/["@creatio-devkit/common"]/**SCHEMA_DEPS*/, function/**SCHEMA_ARGS*/(sdk)/**SCHEMA_ARGS*/ {
 	return {
 		viewConfigDiff: /**SCHEMA_VIEW_CONFIG_DIFF*/[
 			{
@@ -85,6 +86,61 @@ define("UsrRealtyFreedomUI_FormPage", /**SCHEMA_DEPS*/[]/**SCHEMA_DEPS*/, functi
 			},
 			{
 				"operation": "insert",
+				"name": "Button_wfn79yf",
+				"values": {
+					"type": "crt.Button",
+					"caption": "#ResourceString(Button_wfn79yf_caption)#",
+					"color": "primary",
+					"disabled": false,
+					"size": "medium",
+					"iconPosition": "left-icon",
+					"visible": true,
+					"menuItems": [],
+					"clickMode": "menu",
+					"icon": "more-button-icon"
+				},
+				"parentName": "CardToggleContainer",
+				"propertyName": "items",
+				"index": 0
+			},
+			{
+				"operation": "insert",
+				"name": "MenuItem_34tnldv",
+				"values": {
+					"type": "crt.MenuItem",
+					"caption": "#ResourceString(MenuItem_34tnldv_caption)#",
+					"visible": true,
+					"clicked": {
+						"request": "crt.RunBusinessProcessRequest",
+						"params": {
+							"processName": "UsrCalculateMaximumRealtyPriceProcess",
+							"processRunType": "RegardlessOfThePage"
+						}
+					},
+					"icon": "calculator-button-icon"
+				},
+				"parentName": "Button_wfn79yf",
+				"propertyName": "menuItems",
+				"index": 0
+			},
+			{
+				"operation": "insert",
+				"name": "MenuItem_RunWebService",
+				"values": {
+					"type": "crt.MenuItem",
+					"caption": "#ResourceString(MenuItem_RunWebService_caption)#",
+					"visible": true,
+					"icon": "process-button-icon",
+					"clicked": {
+						"request": "usr.RunWebServiceButtonRequest"
+					}
+				},
+				"parentName": "Button_wfn79yf",
+				"propertyName": "menuItems",
+				"index": 1
+			},
+			{
+				"operation": "insert",
 				"name": "MyButton",
 				"values": {
 					"type": "crt.Button",
@@ -103,7 +159,7 @@ define("UsrRealtyFreedomUI_FormPage", /**SCHEMA_DEPS*/[]/**SCHEMA_DEPS*/, functi
 				},
 				"parentName": "CardToggleContainer",
 				"propertyName": "items",
-				"index": 0
+				"index": 1
 			},
 			{
 				"operation": "insert",
@@ -894,7 +950,51 @@ define("UsrRealtyFreedomUI_FormPage", /**SCHEMA_DEPS*/[]/**SCHEMA_DEPS*/, functi
 				}
 			}
 		]/**SCHEMA_MODEL_CONFIG_DIFF*/,
-		handlers: /**SCHEMA_HANDLERS*/[
+		handlers: /**SCHEMA_HANDLERS*/[{
+request: "usr.RunWebServiceButtonRequest",
+/* Implementation of the custom query handler. */
+handler: async (request, next) => {
+this.console.log("Run web service button works...");
+
+var typeObject = await request.$context.LookupAttribute_kudgbtv;
+var typeId = "";
+if (typeObject) {
+typeId = typeObject.value;
+}
+// get id from type lookup type object
+
+var offerTypeObject = await request.$context.LookupAttribute_cl80i7s;
+var offerTypeId = "";
+if (offerTypeObject) {
+offerTypeId = offerTypeObject.value;
+}
+	// get id from type lookup offer type object
+
+/* Create an instance of the HTTP client from @creatio-devkit/common. */
+const httpClientService = new sdk.HttpClientService();
+
+/* Specify the URL to retrieve the current rate. Use the coindesk.com external service. */
+const baseUrl = Terrasoft.utils.uri.getConfigurationWebServiceBaseUrl();
+const transferName = "rest";
+const serviceName = "RealtyService";
+//const methodName = "GetTotalAmountByTypeId";
+const methodName = "GetMaxAmountByTypeId";
+const endpoint = Terrasoft.combinePath(baseUrl, transferName, serviceName, methodName);
+	//const endpoint = "http://localhost/D5_8.0.8.4758/0/rest/RealtyService/GetTotalAmountByTypeId";
+/* Send a POST HTTP request. The HTTP client converts the response body from JSON to a JS object automatically. */
+var params = {
+realtyTypeId: typeId,
+realtyOfferTypeId: offerTypeId,
+entityName: "UsrRealtyFreedomUI"
+};
+const response = await httpClientService.post(endpoint, params);
+
+this.console.log("response total price = " + response.body.GetMaxAmountByTypeIdResult);
+
+/* Call the next handler if it exists and return its result. */
+return next?.handle(request);
+}
+},
 			
 			{
 				request: "crt.HandleViewModelAttributeChangeRequest",
@@ -909,7 +1009,7 @@ var commission = price * percent / 100;
 request.$context.NumberAttribute_vf3wr4o = commission;
 if(price >= 50000){
 		request.$context.enableAttributeValidator('StringAttribute_nremkob', 'required');
-		console.log('Val>-50000',price)
+		console.log('Val>-50000',price);
 	}else {
                     request.$context.disableAttributeValidator('StringAttribute_nremkob', 'required');
     	   }

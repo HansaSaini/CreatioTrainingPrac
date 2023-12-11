@@ -2,6 +2,7 @@
 <Resources Culture="fa-IR">
 	<Group Type="String">
 		<Items>
+			<Item Name="BaseElements.PreconfiguredPageUserTask1.Parameters.Title.Value" Value="Realty average price page" />
 			<Item Name="Caption" Value="Calculate average realty price process" />
 		</Items>
 	</Group>
